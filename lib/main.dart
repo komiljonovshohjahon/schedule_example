@@ -131,6 +131,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   double w = 1600;
   double h = 500;
+  double get headerHeight => 32;
+  double get headerWidth => w / times.length;
 
   late LinkedScrollControllerGroup _horizontalControllersGroup;
   late ScrollController _horizontalController1;
@@ -140,8 +142,6 @@ class _MyHomePageState extends State<MyHomePage> {
   late ScrollController _verticalController1;
   late ScrollController _verticalController2;
 
-  double get headerHeight => 32;
-  double get headerWidth => w / times.length;
   @override
   Widget build(BuildContext context) {
     int rowsCount = 0;
@@ -254,6 +254,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: SizedBox(
                             child: SpannableGrid(
                               style: SpannableGridStyle(
+                                emptyCellDecoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4),
+                                  border: Border.all(
+                                      color: Colors.black, width: .5),
+                                ),
                                 backgroundColor: Colors.grey[500]!,
                                 spacing: 2,
                                 selectedCellDecoration: BoxDecoration(

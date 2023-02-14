@@ -92,6 +92,7 @@ class SpannableGridStyle {
     this.contentOpacity = 0.5,
     this.selectedCellDecoration,
     this.spacing = 2.0,
+    this.emptyCellDecoration,
   });
 
   /// A color of empty cells.
@@ -118,6 +119,10 @@ class SpannableGridStyle {
   /// Space between cells.
   ///
   final double spacing;
+
+  ///Empty Cell Decoration
+  ///
+  final Decoration? emptyCellDecoration;
 }
 
 /// How the [SpannableGrid] fits its parent.
