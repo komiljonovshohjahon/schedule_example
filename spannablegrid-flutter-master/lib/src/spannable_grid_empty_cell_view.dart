@@ -29,16 +29,10 @@ class SpannableGridEmptyCellView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final emptyCellView = content ??
-        Container(
-            color: style.backgroundColor,
-            decoration: style.emptyCellDecoration);
+    final emptyCellView = content ?? SizedBox();
     return isEditing
         ? Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(4),
-              border: Border.all(color: Colors.black, width: .5),
-            ),
+            decoration: style.emptyCellDecoration,
             child: DragTarget<SpannableGridCellData>(
               builder: (context, List<SpannableGridCellData?> candidateData,
                   rejectedData) {

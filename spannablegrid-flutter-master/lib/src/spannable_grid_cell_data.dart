@@ -47,7 +47,9 @@ class SpannableGridCellData {
       required this.row,
       this.height = 0,
       this.columnSpan = 1,
-      this.rowSpan = 1});
+      this.rowSpan = 1,
+      this.acceptOnlyHorizontal = false,
+      this.acceptOnlyVertical = false});
 
   Object id;
   Widget? child;
@@ -56,4 +58,11 @@ class SpannableGridCellData {
   int columnSpan;
   int rowSpan;
   double height;
+  bool acceptOnlyHorizontal;
+  bool acceptOnlyVertical;
+
+  @override
+  toString() {
+    return "SpannableGridCellData {id: $id, column: $column, row: $row, columnSpan: $columnSpan, rowSpan: $rowSpan, height: $height}";
+  }
 }

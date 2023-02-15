@@ -197,6 +197,7 @@ class _SpannableGridState extends State<SpannableGrid> {
   }
 
   void _updateCellsAndChildren() {
+    // return;
     _cells.clear();
     _children.clear();
     if (_isEditing || widget.showGrid) {
@@ -237,6 +238,18 @@ class _SpannableGridState extends State<SpannableGrid> {
               });
             },
             onWillAccept: (data) {
+              print("DATA: ${data.toString()}");
+              print("Row $row, Column $column");
+              if (data.acceptOnlyVertical) {
+                if (data.column != column) {
+                  return false;
+                }
+              }
+              if (data.acceptOnlyHorizontal) {
+                if (data.row != row) {
+                  return false;
+                }
+              }
               if (_dragLocalPosition != null && _cellSize != null) {
                 int dragColumnOffset =
                     _dragLocalPosition!.dx ~/ _cellSize!.width;

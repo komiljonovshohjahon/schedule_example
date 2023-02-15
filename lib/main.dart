@@ -3,14 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 import 'package:spannable_grid/spannable_grid.dart';
 
-class CustomScrollBehavior extends MaterialScrollBehavior {
-  // Override behavior methods and getters like dragDevices
-  @override
-  Set<PointerDeviceKind> get dragDevices => {
-        PointerDeviceKind.touch,
-        PointerDeviceKind.mouse,
-      };
-}
+import 'configurations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      scrollBehavior: CustomScrollBehavior(),
+      scrollBehavior: Configs().scrollBehavior,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.lime,
@@ -77,6 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
       columnSpan: 2,
       rowSpan: 1,
       id: "User 1",
+      acceptOnlyHorizontal: true,
       child: Container(
         decoration: BoxDecoration(
           color: Colors.blueAccent,
@@ -96,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
       row: 1,
       columnSpan: 1,
       rowSpan: 1,
+      acceptOnlyVertical: true,
       id: "User 0",
       child: Container(
         decoration: BoxDecoration(
@@ -116,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
         "name": "User ${i + 1}",
         "col": "Col ${i + 1}",
         "row": "Row ${i + 1}",
-        "itemCount": i == 0 ? 2 : 1,
+        "itemCount": i == 0 ? 2 : (i == 3 ? 3 : 1),
       });
     }
 
