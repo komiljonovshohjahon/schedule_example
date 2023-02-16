@@ -22,13 +22,15 @@ class SidebarMd {
 }
 
 class Configs {
-  final List<TimeMd> times = [for (int i = 0; i < 24; i++) TimeMd(i)];
+  final List<TimeMd> times = [
+    for (int i = 0; i < 24 * 2; i++) TimeMd(i ~/ 2, minute: i % 2 * 30)
+  ];
 
   //Grid Data
-  final double cellHeight = 80; // in Pixels
-  // has some calculation,
-  // so try with preferred values
-  final double cellWidth = 16 * 100;
+  final double cellHeight = 56; // in Pixels
+  /// [cellWidth] has some calculation,
+  /// so try with preferred values
+  final double cellWidth = 24 * 100;
   final double cellSpacing = 2;
   int getRowCount(List<SidebarMd> sidebar) {
     int rowsCount = 0;
@@ -39,8 +41,8 @@ class Configs {
   }
 
   double get gridHeaderWidth => cellWidth / times.length;
-  final double gridFullWidth = 800;
-  final double gridFullHeight = 500;
+  final double gridFullWidth = 1600;
+  final double gridFullHeight = 700;
 
   //Sidebar Data
   final double sidebarHeaderHeight = 32;
@@ -163,13 +165,15 @@ class GridWidgets {
       thumbVisibility: true,
       controller: _horizontalController1,
       child: SizedBox(
-        height: 500,
+        height: _config.gridFullHeight,
         child: SingleChildScrollView(
           controller: _verticalController2,
           child: Container(
             color: Colors.grey[400],
-            width: 800,
-            height: _config.getRowCount(sidebar) * _config.cellHeight,
+            width: _config.gridFullWidth,
+            // height: _config.getRowCount(sidebar) * _config.cellHeight,
+            height: _config.gridFullHeight,
+
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               controller: _horizontalController1,
@@ -181,12 +185,12 @@ class GridWidgets {
                       cellHeight: _config.cellHeight,
                       emptyCellDecoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(4),
-                        border: Border.all(color: Colors.black, width: .5),
+                        border: Border.all(color: Colors.black, width: .2),
                       ),
                       backgroundColor: Colors.grey[500]!,
-                      spacing: 2,
+                      spacing: _config.cellSpacing,
                       selectedCellDecoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey[300]!),
+                        borderRadius: BorderRadius.circular(4),
                       ),
                     ),
                     editingStrategy: const SpannableGridEditingStrategy(
@@ -272,12 +276,11 @@ class _EmptyWidgetState extends State<EmptyWidget> {
             ? Container(
                 decoration: BoxDecoration(
                     color: Colors.lime[400]!,
-                    borderRadius: BorderRadius.circular(4),
-                    border: Border.all(color: Colors.black, width: .5)))
+                    borderRadius: BorderRadius.circular(4)))
             : DecoratedBox(
                 decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),
-                border: Border.all(color: Colors.black, width: .5),
+                border: Border.all(color: Colors.black, width: .2),
               )));
   }
 }

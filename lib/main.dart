@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
     cells.add(SpannableGridCellData(
       column: 1,
       row: 1,
-      columnSpan: 2,
+      columnSpan: 3,
       rowSpan: 2,
       id: "User 1",
       acceptOnlyHorizontal: true,
