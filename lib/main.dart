@@ -1,9 +1,16 @@
+import 'dart:developer';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pluto_grid/pluto_grid.dart';
 import 'package:spannable_grid/spannable_grid.dart';
 
 import 'configurations.dart';
+
+void logger(dynamic msg, [String? hint]) {
+  final h = hint ?? "LOGGER";
+  log("[$h] - ${msg.toString()} - [$h]");
+}
 
 void main() {
   runApp(const MyApp());
@@ -68,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
       column: 1,
       row: 1,
       columnSpan: 2,
-      rowSpan: 1,
+      rowSpan: 2,
       id: "User 1",
       acceptOnlyHorizontal: true,
       child: Container(
@@ -106,12 +113,12 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     ));
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 3; i++) {
       users.add({
-        "name": "User ${i + 1}",
-        "col": "Col ${i + 1}",
-        "row": "Row ${i + 1}",
-        "itemCount": i == 0 ? 2 : (i == 3 ? 3 : 1),
+        "name": "User ${i}",
+        "col": "Col ${i}",
+        "row": "Row ${i}",
+        "itemCount": i + 1,
       });
     }
 
@@ -143,6 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
     for (int i = 0; i < users.length; i++) {
       rowsCount = rowsCount + (users[i]["itemCount"]! as int);
     }
+    logger(rowsCount);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -240,7 +248,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Container(
                       color: Colors.grey[400],
                       width: 800,
-                      height: users.length * 100,
+                      height: rowsCount * 100,
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         controller: _horizontalController1,

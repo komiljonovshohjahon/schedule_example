@@ -32,8 +32,6 @@ class SpannableGridDelegate extends MultiChildLayoutDelegate {
   void performLayout(Size size) {
     final double cellHeight = 100;
     final double cellWidth = size.width / columns;
-    print(
-        "performLayout: size: $size, cellHeight: $cellHeight, cellWidth: $cellWidth");
 
     onCellSizeCalculated(
         Size(cellWidth, cellHeight)); //cellWidth, cellHeight));
@@ -41,6 +39,7 @@ class SpannableGridDelegate extends MultiChildLayoutDelegate {
       final childHeight = cell.rowSpan * cellHeight - spacing * 2;
       final childWidth = cell.columnSpan * cellWidth - spacing * 2;
       cell.height = childHeight;
+      print(childHeight);
       layoutChild(
           cell.id,
           BoxConstraints(
