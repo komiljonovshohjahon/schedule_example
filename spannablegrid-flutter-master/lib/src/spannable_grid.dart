@@ -151,6 +151,7 @@ class _SpannableGridState extends State<SpannableGrid> {
     return _constrainGrid(
       child: CustomMultiChildLayout(
         delegate: SpannableGridDelegate(
+            style: widget.style,
             cells: _cells,
             columns: widget.columns,
             rows: widget.rows,

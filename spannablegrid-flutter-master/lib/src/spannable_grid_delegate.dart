@@ -9,7 +9,7 @@ class SpannableGridDelegate extends MultiChildLayoutDelegate {
     required this.columns,
     required this.rows,
     required this.onCellSizeCalculated,
-    // this.rowHeight,
+    required this.style,
     required this.spacing,
     this.gridSize = SpannableGridSize.parentWidth,
   });
@@ -18,7 +18,7 @@ class SpannableGridDelegate extends MultiChildLayoutDelegate {
 
   final int columns;
 
-  // final double? rowHeight;
+  final SpannableGridStyle style;
 
   final int rows;
 
@@ -30,7 +30,7 @@ class SpannableGridDelegate extends MultiChildLayoutDelegate {
 
   @override
   void performLayout(Size size) {
-    final double cellHeight = 100;
+    final double cellHeight = style.cellHeight ?? size.height / rows;
     final double cellWidth = size.width / columns;
 
     onCellSizeCalculated(

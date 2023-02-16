@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -93,6 +94,7 @@ class SpannableGridStyle {
     this.selectedCellDecoration,
     this.spacing = 2.0,
     this.emptyCellDecoration,
+    this.cellHeight,
   });
 
   /// A color of empty cells.
@@ -123,6 +125,8 @@ class SpannableGridStyle {
   ///Empty Cell Decoration
   ///
   final Decoration? emptyCellDecoration;
+
+  final double? cellHeight;
 }
 
 /// How the [SpannableGrid] fits its parent.

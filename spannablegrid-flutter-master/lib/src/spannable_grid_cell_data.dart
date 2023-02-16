@@ -63,6 +63,6 @@ class SpannableGridCellData {
 
   @override
   toString() {
-    return "SpannableGridCellData {id: $id, column: $column, row: $row, columnSpan: $columnSpan, rowSpan: $rowSpan, height: $height}";
+    return "SpannableGridCellData {id: $id, column: $column, row: $row, columnSpan: $columnSpan, rowSpan: $rowSpan}";
   }
 }
