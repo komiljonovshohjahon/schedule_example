@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({super.key});
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -105,6 +105,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   final gridWidgets = GridWidgets();
+
+  @override
+  void dispose() {
+    gridWidgets.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

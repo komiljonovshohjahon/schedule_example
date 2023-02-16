@@ -25,7 +25,7 @@ class Configs {
   final List<TimeMd> times = [for (int i = 0; i < 24; i++) TimeMd(i)];
 
   //Grid Data
-  final double cellHeight = 100; // in Pixels
+  final double cellHeight = 80; // in Pixels
   // has some calculation,
   // so try with preferred values
   final double cellWidth = 16 * 100;
@@ -40,6 +40,7 @@ class Configs {
 
   double get gridHeaderWidth => cellWidth / times.length;
   final double gridFullWidth = 800;
+  final double gridFullHeight = 500;
 
   //Sidebar Data
   final double sidebarHeaderHeight = 32;
@@ -66,6 +67,13 @@ class GridWidgets {
     _verticalControllersGroup = LinkedScrollControllerGroup();
     _verticalController1 = _verticalControllersGroup.addAndGet();
     _verticalController2 = _verticalControllersGroup.addAndGet();
+  }
+
+  void dispose() {
+    _horizontalController1.dispose();
+    _horizontalController2.dispose();
+    _verticalController1.dispose();
+    _verticalController2.dispose();
   }
 
   Widget _getSidebarHeader() {
@@ -116,8 +124,8 @@ class GridWidgets {
 
   Widget _getSidebarItems(List<SidebarMd> sidebar) {
     return Container(
-      height: 500,
-      width: 200,
+      height: _config.gridFullHeight,
+      width: _config.sidebarWidth,
       color: Colors.grey[300],
       child: SingleChildScrollView(
         controller: _verticalController1,
@@ -127,8 +135,8 @@ class GridWidgets {
             children: [
               for (int i = 0; i < sidebar.length; i++)
                 Container(
-                  height: (sidebar[i].groupCount * 100).toDouble(),
-                  width: 200,
+                  height:
+                      (sidebar[i].groupCount * _config.cellHeight).toDouble(),
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     border: Border(
